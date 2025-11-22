@@ -3,8 +3,7 @@ class Solution {
         int count = 0;
         for(int i : nums){
             if(i%3 != 0){
-                if((i-1)%3 == 0) count++;
-                else if((i+1)%3 == 0) count++;
+count++;
             }
         }
         return count;
