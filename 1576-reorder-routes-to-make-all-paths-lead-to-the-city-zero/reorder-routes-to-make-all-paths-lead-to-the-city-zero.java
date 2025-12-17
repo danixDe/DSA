@@ -10,17 +10,19 @@ class Solution {
             graph.get(p).add(new int[]{ne, 1});
             graph.get(ne).add(new int[]{p, 0});
         }
-        int curr = dfs(0, -1, graph);
+        int curr = dfs(0, new boolean[n], graph);
         return curr;
     }
 
-    private static int dfs(int node, int parent, List<List<int[]>> graph) {
+    private static int dfs(int node, boolean[] visited, List<List<int[]>> graph) {
+        visited[node] = true;
         int reorder = 0;
         for (int[] e : graph.get(node)) {
             int next = e[0], w = e[1];
-            if (next == parent) continue;
-            reorder+=w;
-            reorder+=dfs(next, node, graph);
+        if(!visited[next]){
+                        reorder+=w;
+            reorder+=dfs(next, visited, graph);
+        }
         }
         return reorder;
         }
